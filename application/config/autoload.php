@@ -112,5 +112,15 @@ $autoload['language'] = array();
 $autoload['model'] = array();
 
 
+/*
+| -------------------------------------------------------------------
+|  Auto-load Plugins
+| -------------------------------------------------------------------
+| Prototype:
+|
+|	$autoload['plugin'] = array('plugin1', 'plugin2');
+|
+*/
+$autoload['plugin'] = array('captcha');
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */
