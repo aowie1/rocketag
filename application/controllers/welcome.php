@@ -20,6 +20,22 @@ class Welcome extends CI_Controller
 			$this->load->view('welcome', $data);
 		}
 	}
+	// Use this to get a new password hash via tank_auth
+	/* function change_password($password){
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		$this->load->library('security');
+		$this->load->library('tank_auth');
+		$this->lang->load('tank_auth');
+		
+
+		$hasher = new PasswordHash(
+		    $this->config->item('phpass_hash_strength', 'tank_auth'),
+		    $this->config->item('phpass_hash_portable', 'tank_auth')
+		);
+		$hashed_password = $hasher->HashPassword($password);
+		echo $hashed_password;
+	}*/
 }
 
 /* End of file welcome.php */

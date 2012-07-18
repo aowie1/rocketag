@@ -32,16 +32,17 @@ class MContribute extends CI_Model
         
         //insert tags
         $tags = $this->input->post("tag", TRUE);
-        foreach($tags as $i => $tag){
+        /*foreach($tags as $i => $tag){
             $tag_data[$i]['tag_name'] = $tag;
             $this->db->insert('tags', $tag_data[$i]);
             $new_tag_ids[] = $this->db->insert_id();
-            $inserted_tags = $this->db->affected_rows();
-        }
-        //Alternative method if we can figure out how to get insert_ids from each query that insert_batch executes
-        /*if(!empty($tag_data)){
-            $this->db->insert_batch('tags', $tag_data);
+            $inserted_tags += $this->db->affected_rows();
         }*/
+        //Alternative method if we can figure out how to get insert_ids from each query that insert_batch executes
+        if(!empty($tag_data)){
+            $this->db->insert_batch('tags', $tags);
+            $first_new_tag = $this->db->insert_id();
+        }
             
         //make the connection
         $user_id = $this->tank_auth->get_user_id();
