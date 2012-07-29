@@ -67,7 +67,18 @@ define('CREATE_ACTION_LABEL_PAST', 'created');
 define('FAILURE_RESPONSE_FOLLOWUP', 'Please try again later');
 //define('FAILURE_RESPONSE_FOLLOWUP', 'Please contact the <a href="mailto:aowie1@gmail.com">system admin</a>.');
 
+/*
+|--------------------------------------------------------------------------
+| API
+|--------------------------------------------------------------------------
+|
+| Canned responses built for various API scenarios
+|
+*/
+define('API_INVALID_REQUEST', 'Invalid request to API. (RTFM)');
+define('API_NO_RESULTS', 'Query returned no results.');
 
 define('THING_VIEW_URL_PATH', '/view/');
+
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */
