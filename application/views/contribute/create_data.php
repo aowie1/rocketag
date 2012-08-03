@@ -6,3 +6,6 @@ You may add things and tags using this form. Adding a thing along with tags will
 <div><a href="#">Add another tag</a></div>
 <input type="submit" name="submit" value="Submit" />
 </form>
+
+<?php print_r($user_id); ?>
+
