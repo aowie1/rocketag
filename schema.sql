@@ -6,6 +6,8 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 -- -----------------------------------------------------
 -- Table `ci_sessions`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `ci_sessions` ;
+
 CREATE  TABLE IF NOT EXISTS `ci_sessions` (
   `session_id` VARCHAR(40) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL DEFAULT '0' ,
   `ip_address` VARCHAR(16) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL DEFAULT '0' ,
@@ -21,6 +23,8 @@ COLLATE = utf8_bin;
 -- -----------------------------------------------------
 -- Table `things`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `things` ;
+
 CREATE  TABLE IF NOT EXISTS `things` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `thing_name` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL ,
@@ -33,6 +37,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `users`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `users` ;
+
 CREATE  TABLE IF NOT EXISTS `users` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `username` VARCHAR(50) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL ,
@@ -59,6 +65,8 @@ COLLATE = utf8_bin;
 -- -----------------------------------------------------
 -- Table `tag_types`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `tag_types` ;
+
 CREATE  TABLE IF NOT EXISTS `tag_types` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `type_name` VARCHAR(150) NOT NULL ,
@@ -69,6 +77,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `tags`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `tags` ;
+
 CREATE  TABLE IF NOT EXISTS `tags` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `tag_name` VARCHAR(255) CHARACTER SET 'utf8' NOT NULL ,
@@ -89,6 +99,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `things_tags_joins`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `things_tags_joins` ;
+
 CREATE  TABLE IF NOT EXISTS `things_tags_joins` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `things_id` INT(11) NULL ,
@@ -123,6 +135,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `login_attempts`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `login_attempts` ;
+
 CREATE  TABLE IF NOT EXISTS `login_attempts` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `ip_address` VARCHAR(40) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL ,
@@ -137,6 +151,8 @@ COLLATE = utf8_bin;
 -- -----------------------------------------------------
 -- Table `thing_main_categories`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `thing_main_categories` ;
+
 CREATE  TABLE IF NOT EXISTS `thing_main_categories` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `category_name` VARCHAR(200) NOT NULL ,
@@ -149,6 +165,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `user_autologin`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_autologin` ;
+
 CREATE  TABLE IF NOT EXISTS `user_autologin` (
   `key_id` CHAR(32) CHARACTER SET 'utf8' COLLATE 'utf8_bin' NOT NULL ,
   `user_id` INT(11) NOT NULL DEFAULT '0' ,
@@ -164,6 +182,8 @@ COLLATE = utf8_bin;
 -- -----------------------------------------------------
 -- Table `user_profiles`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_profiles` ;
+
 CREATE  TABLE IF NOT EXISTS `user_profiles` (
   `id` INT(11) NOT NULL AUTO_INCREMENT ,
   `user_id` INT(11) NOT NULL ,
@@ -179,6 +199,8 @@ COLLATE = utf8_bin;
 -- -----------------------------------------------------
 -- Table `spectrum`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `spectrum` ;
+
 CREATE  TABLE IF NOT EXISTS `spectrum` (
   `id` INT NOT NULL ,
   `spectrum_value` INT NULL ,
@@ -204,6 +226,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `person_info`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `person_info` ;
+
 CREATE  TABLE IF NOT EXISTS `person_info` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `birth_date` DATETIME NOT NULL ,
@@ -216,6 +240,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `category_thing_joins`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `category_thing_joins` ;
+
 CREATE  TABLE IF NOT EXISTS `category_thing_joins` (
   `id` INT NOT NULL ,
   `things_id` INT(11) NOT NULL ,
@@ -254,6 +280,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `user_suggestions`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_suggestions` ;
+
 CREATE  TABLE IF NOT EXISTS `user_suggestions` (
   `id` INT NOT NULL ,
   `things_id1` INT(11) NOT NULL ,
@@ -286,6 +314,8 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `comments`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `comments` ;
+
 CREATE  TABLE IF NOT EXISTS `comments` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `users_id` INT(11) NOT NULL ,
