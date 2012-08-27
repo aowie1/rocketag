@@ -57,10 +57,15 @@ class Get extends CI_Controller
             echo json_encode((object) array('error' => API_NO_RESULTS));
     }
     
-    function pop_things($thing_category = 'all', $things_limit = 10, $start_spectrum = -10, $end_spectrum = 10, $tags_limit = 10, $start_date = time()-31536000, $end_date = time())
+    function pop_things($thing_category = 'all', $things_limit = 10, $start_spectrum = -10, $end_spectrum = 10, $tags_limit = 10, $start_date = false, $end_date = false)
     {
+        if (!empty($start_date))
+            $start_date = (time()-31536000);
+        if (!empty($end_date))
+            $end_date = time();
+            
         //validation by a form of type hinting
-        $error->thing_category  = (!empty($thing_category) && !is_string($thing_category);
+        $error->thing_category  = (!empty($thing_category) && !is_string($thing_category));
         $error->things_limit    = (!empty($things_limit) && !is_int($things_limit));
         $error->start_spectrum  = (!empty($start_spectrum) && !is_int($start_spectrum));
         $error->end_spectrum    = (!empty($end_spectrum) && !is_int($end_spectrum));
@@ -84,7 +89,7 @@ class Get extends CI_Controller
     function categories($thing = 'all', $cat_limit = 10)
     {
         //validation by a form of type hinting
-        $error->thing           = (!empty($thing) && !is_string($thing);
+        $error->thing           = (!empty($thing) && !is_string($thing));
         $error->cat_limit       = (!empty($cat_limit) && !is_int($cat_limit));
         
         if(!empty($error))
@@ -103,7 +108,7 @@ class Get extends CI_Controller
     function images($thing = 'all', $images_limit = 5)
     {
         //validation by a form of type hinting
-        $error->thing           = (!empty($thing) && !is_string($thing);
+        $error->thing           = (!empty($thing) && !is_string($thing));
         $error->images_limit    = (!empty($images_limit) && !is_int($images_limit));
         
         if(!empty($error))
@@ -122,7 +127,7 @@ class Get extends CI_Controller
     function links($thing = 'all', $links_limit = 10)
     {
         //validation by a form of type hinting
-        $error->thing           = (!empty($thing) && !is_string($thing);
+        $error->thing           = (!empty($thing) && !is_string($thing));
         $error->links_limit     = (!empty($links_limit) && !is_int($links_limit));
         
         if(!empty($error))
