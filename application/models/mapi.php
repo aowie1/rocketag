@@ -8,13 +8,18 @@
  * @author	Randen Kelly (aowie1@gmail.com)
  */
 class Mapi extends CI_Model{
+    
+    function __construct()
+    {
+        parent::__construct();
+    }
 
     //CREATE
     
     function create_thing($input_string){
         $sql = "INSERT INTO things (name) VALUES (?)";
-        $this->db->query($sql, func_get_args());
-
+        $this->db->query($sql, $input_string);
+    
         return $this->db->insert_id();
     }
     
@@ -65,8 +70,11 @@ class Mapi extends CI_Model{
         return ($q->num_rows() > 0) ? $r : null;  
     }
     
-    function _get_popular_things($thing_category = 'all', $things_limit = 10, $start_spectrum = -10, $end_spectrum = 10, $tags_limit = 10, $start_date = time()-31536000, $end_date = time())
+    function _get_popular_things($thing_category = 'all', $things_limit = 10, $start_spectrum = -10, $end_spectrum = 10, $tags_limit = 10, $start_date = false, $end_date = false)
     {
+        $start_date = time()-31536000;
+        $end_date = time();
+        
         $this->db->select('things.name as thing_name, spectrum.value as spectrum_value');
         
         $this->db->join('category_thing_joins', 'category_thing_joins.things_id = things.id', 'left');
