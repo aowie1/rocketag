@@ -11,6 +11,10 @@ class create extends CI_Controller {
         
         $this->load->model('mapi');
         
+        //authentication
+        if (!$this->tank_auth->is_logged_in())
+            redirect('/auth');
+        
     }
     
     function thing($json_response = true)
