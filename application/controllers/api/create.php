@@ -2,18 +2,24 @@
 
 class create extends CI_Controller {
 
+    public $user_id;
+    
     function __construct()
     {
         parent::__construct();
 
+        $this->load->library('tank_auth');
         $this->load->library('form_validation');
         $this->load->helper('url');
         
         $this->load->model('mapi');
         
+
         //authentication
         if (!$this->tank_auth->is_logged_in())
             redirect('/auth');
+        else
+            $this->user_id = $this->tank_auth->get_user_id();
         
     }
     
@@ -26,10 +32,17 @@ class create extends CI_Controller {
         
         if ($this->form_validation->run()) {
             $thing = $this->input->post('thing_name');
-            $anonymous = !empty($this->input->post('anonymous'));
+            $anonymous = $this->input->post('anonymous');
+            $anonymous_status = !empty($anonymous);
             $category_id = $this->input->post('category');
             
-            $new_thing_id = $this->mapi->create_thing($thing);
+            $insert_thing_data = array(
+                'name'          => $thing,
+                'created_ts'    => time(),
+                'modified_ts'   => time()
+            );
+            
+            $new_thing_id = $this->mapi->create_thing($insert_thing_data);
             
             //Attempt to assign the tags if they were posted and the thing was successfully created
             if (!empty($_POST['tags']) && $new_thing_id) {
@@ -49,8 +62,13 @@ class create extends CI_Controller {
             if (!empty($category_id)) {
                 $insert_category_data = array(
                     'things_id'             => $new_thing_id,
-                    'thing_categories_id'   => $category_id
+                    'thing_categories_id'   => $category_id,
+                    'users_id'              => $this->user_id
                 );
+                
+                if (!empty($is_person))
+                    $insert_category_data['person_info_id'] = $person_id;
+                    
                 $this->mapi->relate_thing_category($insert_category_data);
             }
             

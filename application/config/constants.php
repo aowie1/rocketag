@@ -60,7 +60,7 @@ define('VOTE_ACTION_LABEL_FUTURE', 'vote');
 define('VOTE_ACTION_LABEL_PRESENT', 'voting');
 define('VOTE_ACTION_LABEL_PAST', 'voted');
 
-define('CREATE_ACTION_LABEL_PRESENT', 'create');
+define('CREATE_ACTION_LABEL_FUTURE', 'create');
 define('CREATE_ACTION_LABEL_PRESENT', 'creating');
 define('CREATE_ACTION_LABEL_PAST', 'created');
 
