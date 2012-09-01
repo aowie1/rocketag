@@ -16,14 +16,23 @@ class Mapi extends CI_Model{
 
     //CREATE
     
-    function create_thing($data){
+    function create_thing($data)
+    {
         $this->db->insert('things', $data);
     
         return $this->db->insert_id();
     }
     
-    function relate_thing_category($data) {
+    function relate_thing_category($data)
+    {
         $this->db->insert('categories_things_joins', $data);
+        
+        return $this->db->insert_id();
+    }
+    
+    function create_tag($data)
+    {
+        $this->db->insert('tags', $data);
         
         return $this->db->insert_id();
     }

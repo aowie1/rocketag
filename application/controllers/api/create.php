@@ -92,27 +92,40 @@ class create extends CI_Controller {
     
     function tag($json_response = true)
     {
-        $this->form_validation->set_rules('tags[]', 'Tag', 'is_natural_no_zero|max_length[20]');
+        $this->form_validation->set_rules('tag_name', 'Tag', 'required');
         
         if ($this->form_validation->run()) {
-            echo 'passed validation';
-            $thing = $this->input->post('thing_name');
-            $tags = $this->input->post('tags');
-            $creation = $this->mapi->create_thing($thing);
+            $tag = $this->input->post('tag_name');
             
-            $status = array('status' => (int) $creation);
-            return $creation;
-        }else{
+            if (!empty($tag)) {
+                $insert_tag_data = array(
+                    'name'              => $tag,
+                    'created_ts'        => time(),
+                    'created_users_id'  => $this->user_id,
+                    'modified_ts'       => time(),
+                    'modified_users_id' => $this->user_id
+                );
+                
+                $new_tag_id = $this->mapi->create_tag($insert_tag_data);
+
+                $status = !empty($new_tag_id);
+            } else
+                $status = false;
+        } else {
             $errors = $this->form_validation->error_array();
             $status = array('status' => (int) empty($errors));
         }
         
+        //Output a formatted response
         if ($json_response) {
-            $output = array_merge($status, array('errors' => @$errors));
+            //We squelch errors here b/c PHP throws a warning if the default value is 0
+            @$output->status = (int) $status;
+            $output->errors = @$errors;
+            
             echo json_encode($output);
         }
         
-        return false;
+        return $status;
     }
     
     function _valid_string($str)
